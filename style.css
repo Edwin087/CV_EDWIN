@@ -90,6 +90,177 @@ p {
 }
 /***************** Components ******************/
 
+/***************** Carousel ******************/
+
+@keyframes carousel-slide {
+  0% {
+    transform: translateX(0%);
+  }
+
+  25% {
+    transform: translateX(-25%);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-75%);
+  }
+}
+/* animación automática */
+.carousel {
+  margin: 2rem auto;
+  padding: 2rem 0;
+  max-width: 800px;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: var(--carousel-bg-color);
+}
+
+.carousel .slides {
+  /* para el espacio que reemplaza el icono de lista  */
+  padding-left: 0;
+  /* 100% para cada slide, cuando se quiere agregar o disminuir */
+  width: 400%;
+  display: flex;
+  list-style: none;
+  transition: transform 0.5s ease-in-out;
+  animation: carousel-slide 12s ease-in-out 3s;
+}
+
+.carousel input {
+  display: none;
+}
+
+.carousel label {
+  border: medium solid var(--gray-dark-color);
+  border-radius: 50%;
+  margin: 0 0.25rem;
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  cursor: pointer;
+}
+
+#slide-1:checked ~ .slides {
+  /* modificar el porsentaje por el numero de slides para poder mover ya sea en positivo o negativo izquierda-derecha  */
+  transform: translateX(0%);
+}
+
+#slide-2:checked ~ .slides {
+  transform: translateX(-25%);
+}
+
+#slide-3:checked ~ .slides {
+  transform: translateX(-50%);
+}
+
+#slide-4:checked ~ .slides {
+  transform: translateX(-75%);
+}
+
+/* Para que los botones de checked se seleccionen */
+#slide-1:checked ~ .slides-nav label#dot-1,
+#slide-2:checked ~ .slides-nav label#dot-2,
+#slide-3:checked ~ .slides-nav label#dot-3,
+#slide-4:checked ~ .slides-nav label#dot-4 {
+  background-color: var(--gray-dark-color);
+}
+
+/***************** Contact Form ******************/
+.contact-form {
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 800px;
+}
+
+/* para todos los elementos de contact-form */
+.contact-form > * {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 100%;
+}
+
+/* aplica la misma fuente a los input y textarea */
+.contact-form input,
+.contact-form textarea {
+  font-size: 0.85rem;
+  font-family: var(--font);
+}
+
+.contact-form input {
+  border: 0;
+  padding-left: 0;
+  border-bottom: thin solid var(--gray-dark-color);
+}
+
+.contact-form textarea {
+  border: thin solid var(--gray-dark-color);
+  resize: none;
+}
+
+/* Clase con selector de atributos */
+.contact-form input[type="submit"] {
+  margin-top: 0;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+/* estado hover  */
+.contact-form input[type="submit"]:hover {
+  opacity: 0.75;
+}
+
+.contact-form *::placeholder {
+  color: var(--gray-dark-color);
+}
+
+/*  diseño del modal, después de eviar por correo */
+.contact-form-response {
+  padding: 1rem;
+  width: 400px;
+  text-align: center;
+  background-color: var(--white-color);
+}
+
+/* Diseño del svg del modal */
+.contact-form-response svg {
+  margin-top: 2rem;
+  width: 4rem;
+  height: 4rem;
+  fill: var(--first-color);
+}
+
+/* activa el modal de gracias */
+.modal#gracias:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+  }
+
+  /* Darle dos expacios con span para que ocupe las dos columnas */
+  .contact-form textarea,
+  .contact-form-loader,
+  .button-form-submint {
+    grid-column: span 2;
+  }
+  .contact-form input[type="submit"] {
+    margin-left: 0;
+  }
+}
+
 /***************** Heroimage ******************/
 .hero-image {
   background-image: var(--hero-image);
@@ -257,8 +428,15 @@ progress::-moz-progress-bar {
 }
 
 /******************* Utilitis *******************/
+/* imagenes del carousel */
 
-/* Para el fondo en los servicios */
+.avatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+/* para el fondo en los servicios */
 .bg-gray-light {
   background-color: var(--gray-light-color);
 }
@@ -309,6 +487,11 @@ progress::-moz-progress-bar {
   color: var(--title-color);
 }
 
+/* Color del titulo del carousel */
+.text-first-color {
+  color: var(--first-color);
+}
+
 .text-center {
   text-align: center;
 }
@@ -345,6 +528,36 @@ progress::-moz-progress-bar {
 /* espacio de descargar cv foto y habilidades */
 .about > article {
   margin-bottom: 2rem;
+}
+
+/* Cartas de contacto */
+.contact-card {
+  width: 100%;
+  height: 144px;
+  padding: 1rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact-card > small {
+  margin-top: -1rem;
+}
+
+.contact-card > svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--first-color);
+}
+
+.footer {
+  margin-bottom: var(--header-height);
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--third-color);
 }
 
 .header {
@@ -455,8 +668,26 @@ progress::-moz-progress-bar {
   width: 50px;
 }
 
+/* para quitar la decoración de los enlaces en social media */
+.social-media a {
+  padding: 0 0.4rem;
+  text-decoration: none;
+}
+
+/* para el tamaño  de los íconos de los svg en este caso que crescan un poco más*/
+.social-media svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 /*......... codigo para tablet .........*/
 @media screen and (min-width: 768px) {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: space-between;
+  }
+
   .portfolio > .container {
     display: grid;
     grid-template-columns: repeat(2, 50%);
@@ -496,6 +727,17 @@ progress::-moz-progress-bar {
     justify-content: space-between;
     align-content: center;
   }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    justify-content: space-between;
+  }
+
+  .footer {
+    margin-bottom: 0;
+  }
+
   .header {
     position: sticky;
     /*  Stycky se coloca en donde queremos, por ello el top 0, para que esté en el incio */
