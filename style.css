@@ -21,6 +21,15 @@
   --header-height: 4rem;
 }
 
+/*........................ codigo edwin ..................*/
+
+/* .emogi-edw {
+  max-width: 8%;
+  height: auto;
+} */
+
+/*........................ codigo edwin ..................*/
+
 /********************* Rest *********************/
 html {
   box-sizing: border-box;
@@ -324,6 +333,7 @@ p {
   text-align: center;
   text-decoration: none;
   color: var(--first-color);
+  color: blanchedalmond;
 }
 
 .menu a:hover {
@@ -464,7 +474,7 @@ progress::-moz-progress-bar {
 
 /* Grises en la foto, si dedeas ELIMINAR */
 .gray-scale {
-  filter: grayscale(1);
+  /* filter: grayscale(1); */
 }
 
 .none {
@@ -576,9 +586,10 @@ progress::-moz-progress-bar {
   align-items: center;
 }
 .logo a {
-  color: var(--first-color);
+  /* color: var(--first-color); */
+  color: white;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 100%;
   text-decoration: none;
 }
 
